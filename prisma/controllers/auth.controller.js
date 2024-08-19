@@ -9,7 +9,7 @@ import { PrismaClient } from "@prisma/client";
 
 const prisma = new PrismaClient();
 
-const signup = async (req, res) => {
+async function signup(req, res) {
   const { userType, name, email, phoneNumber, password } = req.body;
 
   if (!userType || !name || !email || !phoneNumber || !password) {
@@ -43,9 +43,9 @@ const signup = async (req, res) => {
   });
 
   res.json({ message: "유저 생성 성공", data: createUserInfo });
-};
+}
 
-const signin = async (req, res) => {
+async function signin(req, res) {
   const { email, password } = req.body;
 
   const userInfo = await prisma.userInfo.findUnique({
@@ -84,10 +84,10 @@ const signin = async (req, res) => {
   });
 
   res.json({ accessToken, refreshToken });
-};
+}
 
-const signout = async (req, res) => {
-  const accessToken = req.headers.authorization.split(" ")[1];
+async function signout(req, res) {
+  const accessToken = req.headers.authorization?.split(" ")[1];
 
   if (!accessToken) {
     return res.status(400).json({ message: "액세스 토큰이 없습니다." });
@@ -119,9 +119,9 @@ const signout = async (req, res) => {
   });
 
   res.json({ message: "로그아웃 성공" });
-};
+}
 
-const refresh = async (req, res) => {
+async function refresh(req, res) {
   const { email: requestEmail, refreshToken: requestRefreshToken } = req.body;
 
   const userInfo = await prisma.userInfo.findUnique({
@@ -162,6 +162,6 @@ const refresh = async (req, res) => {
   });
 
   res.json({ accessToken, newRefreshToken });
-};
+}
 
 export { signup, signin, signout, refresh };
