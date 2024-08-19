@@ -7,6 +7,7 @@ import {
   signout,
   signup,
 } from "./prisma/controllers/auth.controller.js";
+import { userInfo, usersInfo } from "./prisma/controllers/user.controller.js";
 
 const port = process.env.PORT || 3000;
 
@@ -24,10 +25,10 @@ app.post("/auth/refresh", refresh);
 
 app.get("/auth2/authorize/:socialType", () => {});
 
-// // User
-// app.get("/users/:userId", () => {});
+// User
+app.get("/users", usersInfo);
 
-// app.put("/users/:userId", () => {});
+app.get("/users/:userId", userInfo);
 
 // // Notifications
 // app.get("/notifications", () => {});

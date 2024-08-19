@@ -5,7 +5,8 @@
 // Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
 
 generator client {
-  provider = "prisma-client-js"
+  provider        = "prisma-client-js"
+  previewFeatures = ["omitApi"]
 }
 
 datasource db {
@@ -38,16 +39,16 @@ model Customer {
 }
 
 model Mover {
-  moverId            String       @id @default(uuid())
+  moverId            String           @id @default(uuid())
   career             String?
   confirmedCount     Int?
   serviceArea        String?
   serviceType        ServiceType?
   onLineIntroduction String?
   detailDescription  String?
-  serviceableArea    String?
-  createdAt          DateTime     @default(now())
-  updatedAt          DateTime     @updatedAt
+  serviceableArea    ServiceableArea?
+  createdAt          DateTime         @default(now())
+  updatedAt          DateTime         @updatedAt
   Favorite           Favorite[]
   Estimate           Estimate[]
 }
@@ -132,6 +133,26 @@ enum ServiceType {
   SMALL
   HOME
   OFFICE
+}
+
+enum ServiceableArea {
+  SEOUL
+  GYEINGGI
+  INCHEON
+  GANGWON
+  CHUNGBUK
+  CHUNGNAM
+  SEJONG
+  DAEJEON
+  JEONBUK
+  JEONNAM
+  GWANGJU
+  GYEONGBUK
+  GYEONGNAM
+  DAEGU
+  ULSAN
+  BUSAN
+  JEJU
 }
 
 enum NotificationType {
