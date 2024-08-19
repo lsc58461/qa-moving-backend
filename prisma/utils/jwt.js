@@ -16,7 +16,13 @@ const generateAccessToken = (user) => {
 };
 
 const verifyAccessToken = (accessToken) => {
-  return jwt.verify(accessToken, process.env.JWT_SECRET);
+  try {
+    const verify = jwt.verify(accessToken, process.env.JWT_SECRET);
+
+    return verify;
+  } catch (error) {
+    return false;
+  }
 };
 
 const generateRefreshToken = () => {
