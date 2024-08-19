@@ -1,0 +1,24 @@
+### signup
+POST http://localhost:3000/auth/signup
+Content-Type: application/json
+
+{
+  "userType": "CUSTOMER",
+  "name":"테스트1",
+  "email":"test1@gmail.com", 
+  "phoneNumber": "010-1234-5678",
+  "password":"test1234"
+}
+
+### signin
+POST http://localhost:3000/auth/signin
+Content-Type: application/json
+
+{
+  "email":"test1@gmail.com", 
+  "password":"test1234"
+}
+
+### signout
+POST http://localhost:3000/auth/signout
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyVHlwZSI6IkNVU1RPTUVSIiwibmFtZSI6Iu2FjOyKpO2KuDEiLCJlbWFpbCI6InRlc3QxQGdtYWlsLmNvbSIsInBob25lTnVtYmVyIjoiMDEwLTEyMzQtNTY3OCIsImlhdCI6MTcyNDA0OTkyMiwiZXhwIjoxNzI0MDUzNTIyfQ.Y_DSfDWz-fJZjAaRoo1e3q9QJZ9nV-_Yqm8wzX08wdU

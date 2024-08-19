@@ -5,10 +5,158 @@
 // Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
 
 generator client {
-  provider = "prisma-client-js"
+  provider        = "prisma-client-js"
+  previewFeatures = ["omitApi"]
 }
 
 datasource db {
   provider = "postgresql"
   url      = env("DATABASE_URL")
+}
+
+model UserInfo {
+  id              String         @id @default(uuid())
+  userType        UserType
+  name            String?
+  email           String?        @unique
+  phoneNumber     String?
+  password        String?
+  profileImageUrl String?
+  refreshToken    String?
+  createdAt       DateTime       @default(now())
+  updatedAt       DateTime       @updatedAt
+  Notification    Notification[]
+}
+
+model Customer {
+  customerId      String            @id @default(uuid())
+  createdAt       DateTime          @default(now())
+  updatedAt       DateTime          @updatedAt
+  Favorite        Favorite[]
+  MovingInfo      MovingInfo[]
+  EstimateRequest EstimateRequest[]
+  Estimate        Estimate[]
+}
+
+model Mover {
+  moverId            String           @id @default(uuid())
+  career             String?
+  confirmedCount     Int?
+  serviceArea        String?
+  serviceType        ServiceType?
+  onLineIntroduction String?
+  detailDescription  String?
+  serviceableArea    ServiceableArea?
+  createdAt          DateTime         @default(now())
+  updatedAt          DateTime         @updatedAt
+  Favorite           Favorite[]
+  Estimate           Estimate[]
+}
+
+model Favorite {
+  id         String   @id @default(uuid())
+  customer   Customer @relation(fields: [customerId], references: [customerId])
+  customerId String
+  mover      Mover    @relation(fields: [moverId], references: [moverId])
+  moverId    String
+}
+
+model Notification {
+  id               String           @id @default(uuid())
+  user             UserInfo         @relation(fields: [userId], references: [id])
+  userId           String
+  notificationType NotificationType
+  isRead           Boolean          @default(false)
+  createdAt        DateTime         @default(now())
+  updatedAt        DateTime         @updatedAt
+}
+
+model MovingInfo {
+  id           String      @id @default(uuid())
+  customer     Customer    @relation(fields: [customerId], references: [customerId])
+  customerId   String
+  movingType   ServiceType
+  movingDate   DateTime
+  startAddress String
+  endAddress   String
+  createdAt    DateTime    @default(now())
+  updatedAt    DateTime    @updatedAt
+  Estimate     Estimate[]
+}
+
+model EstimateRequest {
+  movingInfoId  String   @id @default(uuid())
+  customer      Customer @relation(fields: [customerId], references: [customerId])
+  customerId    String
+  isDesignated  Boolean  @default(false)
+  estimateCount Int      @default(0)
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
+}
+
+model Estimate {
+  id           String     @id @default(uuid())
+  movingInfo   MovingInfo @relation(fields: [movingInfoId], references: [id])
+  movingInfoId String
+  customer     Customer   @relation(fields: [customerId], references: [customerId])
+  customerId   String
+  mover        Mover      @relation(fields: [moverId], references: [moverId])
+  moverId      String
+  reviewId     String?
+  price        Int
+  comment      String?
+  isConfirmed  Boolean    @default(false)
+  createdAt    DateTime   @default(now())
+  updatedAt    DateTime   @updatedAt
+}
+
+model Review {
+  id           String   @id @default(uuid())
+  estimateId   String
+  movingInfoId String
+  customerId   String
+  moverId      String
+  rating       Int
+  comment      String
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+}
+
+// -------------------- enum --------------------
+
+enum UserType {
+  CUSTOMER
+  MOVER
+}
+
+enum ServiceType {
+  SMALL
+  HOME
+  OFFICE
+}
+
+enum ServiceableArea {
+  SEOUL
+  GYEINGGI
+  INCHEON
+  GANGWON
+  CHUNGBUK
+  CHUNGNAM
+  SEJONG
+  DAEJEON
+  JEONBUK
+  JEONNAM
+  GWANGJU
+  GYEONGBUK
+  GYEONGNAM
+  DAEGU
+  ULSAN
+  BUSAN
+  JEJU
+}
+
+enum NotificationType {
+  ESTIMATE
+  CONFIRMED
+  MOVINGDAY
 }
