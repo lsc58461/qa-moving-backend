@@ -19,6 +19,5 @@ jobs:
           script: |
             cd /home/ubuntu/qa-moving-backend
             git pull origin develop
-            pm2 stop all
             npm ci
-            pm2 reload ./app.js
+            pm2 reload app
