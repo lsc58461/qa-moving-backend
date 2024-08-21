@@ -8,6 +8,12 @@ import {
   signup,
 } from "./prisma/controllers/auth.controller.js";
 import { userInfo, usersInfo } from "./prisma/controllers/user.controller.js";
+import {
+  notification,
+  notifications,
+  sendNotification,
+  unreadNotificationsCount,
+} from "./prisma/controllers/notifications.controller.js";
 
 const port = process.env.PORT || 3000;
 
@@ -30,12 +36,14 @@ app.get("/users", usersInfo);
 
 app.get("/users/:userId", userInfo);
 
-// // Notifications
-// app.get("/notifications", () => {});
+// Notifications
+app.get("/notifications", notifications);
 
-// app.get("/notifications/:notificationId", () => {});
+app.post("/notifications", sendNotification);
 
-// app.get("/notifications/unread-count", () => {});
+app.get("/notifications/unread-count", unreadNotificationsCount);
+
+app.get("/notifications/:notificationId", notification);
 
 // // MovingInfo
 // app.post("/users/:userId/moving-info", () => {});
