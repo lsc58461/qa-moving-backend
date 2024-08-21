@@ -15,17 +15,16 @@ datasource db {
 }
 
 model UserInfo {
-  id              String         @id @default(uuid())
+  id              String   @id @default(uuid())
   userType        UserType
   name            String?
-  email           String?        @unique
+  email           String?  @unique
   phoneNumber     String?
   password        String?
   profileImageUrl String?
   refreshToken    String?
-  createdAt       DateTime       @default(now())
-  updatedAt       DateTime       @updatedAt
-  Notification    Notification[]
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt
 }
 
 model Customer {
@@ -63,9 +62,9 @@ model Favorite {
 
 model Notification {
   id               String           @id @default(uuid())
-  user             UserInfo         @relation(fields: [userId], references: [id])
   userId           String
   notificationType NotificationType
+  message          String
   isRead           Boolean          @default(false)
   createdAt        DateTime         @default(now())
   updatedAt        DateTime         @updatedAt

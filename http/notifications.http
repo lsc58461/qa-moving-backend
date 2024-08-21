@@ -1,0 +1,30 @@
+### 유저의 전체 알림 조회
+GET http://localhost:3000/notifications
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyVHlwZSI6IkNVU1RPTUVSIiwibmFtZSI6Iu2FjOyKpO2KuDEiLCJlbWFpbCI6InRlc3QxQGdtYWlsLmNvbSIsInBob25lTnVtYmVyIjoiMDEwLTEyMzQtNTY3OCIsImlhdCI6MTcyNDI0NDgzOCwiZXhwIjoxNzI0MjgwODM4fQ.pCusAcFsB6KK5SQpizcwAc7CPvE--kb_pZek-lj0J4Y
+
+### 유저의 전체 알림 조회 (filterBy=unRead)
+GET http://localhost:3000/notifications?filterBy=unRead
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyVHlwZSI6IkNVU1RPTUVSIiwibmFtZSI6Iu2FjOyKpO2KuDEiLCJlbWFpbCI6InRlc3QxQGdtYWlsLmNvbSIsInBob25lTnVtYmVyIjoiMDEwLTEyMzQtNTY3OCIsImlhdCI6MTcyNDI0NDgzOCwiZXhwIjoxNzI0MjgwODM4fQ.pCusAcFsB6KK5SQpizcwAc7CPvE--kb_pZek-lj0J4Y
+
+### 유저의 전체 알림 조회 (filterBy=read)
+GET http://localhost:3000/notifications?filterBy=read
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyVHlwZSI6IkNVU1RPTUVSIiwibmFtZSI6Iu2FjOyKpO2KuDEiLCJlbWFpbCI6InRlc3QxQGdtYWlsLmNvbSIsInBob25lTnVtYmVyIjoiMDEwLTEyMzQtNTY3OCIsImlhdCI6MTcyNDI0NDgzOCwiZXhwIjoxNzI0MjgwODM4fQ.pCusAcFsB6KK5SQpizcwAc7CPvE--kb_pZek-lj0J4Y
+
+
+### 알림 보내기
+POST http://localhost:3000/notifications
+Content-Type: application/json
+
+{
+  "userId": "836315c7-d392-43a6-92a6-ec2d62798801",
+  "notificationType": "CONFIRMED"
+}
+
+### 알림 읽기
+GET http://localhost:3000/notifications/70bc24c8-6d29-4f6c-a8bc-b3dd767bd9e7
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyVHlwZSI6IkNVU1RPTUVSIiwibmFtZSI6Iu2FjOyKpO2KuDEiLCJlbWFpbCI6InRlc3QxQGdtYWlsLmNvbSIsInBob25lTnVtYmVyIjoiMDEwLTEyMzQtNTY3OCIsImlhdCI6MTcyNDI0NDgzOCwiZXhwIjoxNzI0MjgwODM4fQ.pCusAcFsB6KK5SQpizcwAc7CPvE--kb_pZek-lj0J4Y
+
+### 읽지 않은 알림 개수 조회
+GET http://localhost:3000/notifications/unread-count
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyVHlwZSI6IkNVU1RPTUVSIiwibmFtZSI6Iu2FjOyKpO2KuDEiLCJlbWFpbCI6InRlc3QxQGdtYWlsLmNvbSIsInBob25lTnVtYmVyIjoiMDEwLTEyMzQtNTY3OCIsImlhdCI6MTcyNDI0NDgzOCwiZXhwIjoxNzI0MjgwODM4fQ.pCusAcFsB6KK5SQpizcwAc7CPvE--kb_pZek-lj0J4Y
+

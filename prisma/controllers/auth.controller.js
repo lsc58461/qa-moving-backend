@@ -109,6 +109,10 @@ async function signout(req, res) {
     return res.status(400).json({ message: "유저 정보가 없습니다." });
   }
 
+  if (!userInfo.refreshToken) {
+    return res.status(400).json({ message: "이미 로그아웃 되어있습니다." });
+  }
+
   await prisma.userInfo.update({
     where: {
       email: decoded.email,
@@ -122,11 +126,19 @@ async function signout(req, res) {
 }
 
 async function refresh(req, res) {
-  const { email: requestEmail, refreshToken: requestRefreshToken } = req.body;
+  const accessToken = req.headers.authorization?.split(" ")[1];
+
+  if (!accessToken) {
+    return res.status(400).json({ message: "액세스 토큰이 없습니다." });
+  }
+
+  const decoded = verifyAccessToken(accessToken);
+
+  const { refreshToken: requestRefreshToken } = req.body;
 
   const userInfo = await prisma.userInfo.findUnique({
     where: {
-      email: requestEmail,
+      email: decoded.email,
     },
   });
 
@@ -149,7 +161,7 @@ async function refresh(req, res) {
     phoneNumber,
   };
 
-  const accessToken = generateAccessToken(payload);
+  const genAccessToken = generateAccessToken(payload);
   const newRefreshToken = generateRefreshToken();
 
   await prisma.userInfo.update({
@@ -161,7 +173,7 @@ async function refresh(req, res) {
     },
   });
 
-  res.json({ accessToken, newRefreshToken });
+  res.json({ accessToken: genAccessToken, refreshToken: newRefreshToken });
 }
 
 export { signup, signin, signout, refresh };
