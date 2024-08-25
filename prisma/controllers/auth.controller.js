@@ -32,17 +32,37 @@ async function signup(req, res) {
   const salt = bcrypt.genSaltSync(10);
   const hash = bcrypt.hashSync(password, salt);
 
-  const createUserInfo = await prisma.userInfo.create({
-    data: {
-      userType,
-      name,
-      email,
-      phoneNumber,
-      password: hash,
-    },
-  });
+  try {
+    const createUserInfo = await prisma.userInfo.create({
+      data: {
+        userType,
+        name,
+        email,
+        phoneNumber,
+        password: hash,
+      },
+    });
 
-  res.json({ message: "유저 생성 성공", data: createUserInfo });
+    if (userType === "CUSTOMER") {
+      await prisma.customer.create({
+        data: {
+          customerId: createUserInfo.id,
+        },
+      });
+    }
+
+    if (userType === "MOVER") {
+      await prisma.mover.create({
+        data: {
+          moverId: createUserInfo.id,
+        },
+      });
+    }
+
+    res.json({ message: "유저 생성 성공", data: createUserInfo });
+  } catch (error) {
+    res.status(500).json({ message: "서버 에러" });
+  }
 }
 
 async function signin(req, res) {

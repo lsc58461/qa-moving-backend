@@ -35,15 +35,9 @@ async function userInfo(req, res) {
     return res.status(400).json({ message: "유효하지 않은 토큰입니다." });
   }
 
-  const { userId } = req.params;
-
-  if (!userId) {
-    return res.status(400).json({ message: "유저 아이디가 없습니다." });
-  }
-
   const user = await prisma.userInfo.findUnique({
     where: {
-      id: userId,
+      email: decoded.email,
     },
   });
 
@@ -51,7 +45,33 @@ async function userInfo(req, res) {
     return res.status(400).json({ message: "유저 정보가 없습니다." });
   }
 
-  res.json({ ...user });
+  if (user.userType === "CUSTOMER") {
+    const customer = await prisma.customer.findUnique({
+      where: {
+        customerId: user.id,
+      },
+    });
+
+    if (!customer) {
+      return res.status(400).json({ message: "고객 정보가 없습니다." });
+    }
+
+    return res.json({ ...user, ...customer });
+  }
+
+  if (user.userType === "MOVER") {
+    const mover = await prisma.mover.findUnique({
+      where: {
+        moverId: user.id,
+      },
+    });
+
+    if (!mover) {
+      return res.status(400).json({ message: "이사업체 정보가 없습니다." });
+    }
+
+    return res.json({ ...user, ...mover });
+  }
 }
 
 export { usersInfo, userInfo };

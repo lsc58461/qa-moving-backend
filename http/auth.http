@@ -10,6 +10,14 @@ Content-Type: application/json
   "password":"test1234"
 }
 
+# {
+#   "userType": "MOVER",
+#   "name":"테스트2",
+#   "email":"test2@gmail.com", 
+#   "phoneNumber": "010-1234-5678",
+#   "password":"test1234"
+# }
+
 ### signin
 POST http://localhost:3000/auth/signin
 Content-Type: application/json
@@ -21,13 +29,13 @@ Content-Type: application/json
 
 ### signout
 POST http://localhost:3000/auth/signout
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyVHlwZSI6IkNVU1RPTUVSIiwibmFtZSI6Iu2FjOyKpO2KuDEiLCJlbWFpbCI6InRlc3QxQGdtYWlsLmNvbSIsInBob25lTnVtYmVyIjoiMDEwLTEyMzQtNTY3OCIsImlhdCI6MTcyNDI0NDU0OSwiZXhwIjoxNzI0MjgwNTQ5fQ.KVH302VU6vxNVkvH9ZQAzPNuO6P9t_792qCwETTlJ6w
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyVHlwZSI6IkNVU1RPTUVSIiwibmFtZSI6Iu2FjOyKpO2KuDEiLCJlbWFpbCI6InRlc3QxQGdtYWlsLmNvbSIsInBob25lTnVtYmVyIjoiMDEwLTEyMzQtNTY3OCIsImlhdCI6MTcyNDU5NzU3NCwiZXhwIjoxNzI0NjAxMTc0fQ.WL0WqFDX9EVN6O5YNCj1S-eYvXgClXgeV70H3VTNTmw
 
 ### refresh
 POST http://localhost:3000/auth/refresh
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyVHlwZSI6IkNVU1RPTUVSIiwibmFtZSI6Iu2FjOyKpO2KuDEiLCJlbWFpbCI6InRlc3QxQGdtYWlsLmNvbSIsInBob25lTnVtYmVyIjoiMDEwLTEyMzQtNTY3OCIsImlhdCI6MTcyNDI0NDgzOCwiZXhwIjoxNzI0MjgwODM4fQ.pCusAcFsB6KK5SQpizcwAc7CPvE--kb_pZek-lj0J4Y
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyVHlwZSI6IkNVU1RPTUVSIiwibmFtZSI6Iu2FjOyKpO2KuDEiLCJlbWFpbCI6InRlc3QxQGdtYWlsLmNvbSIsInBob25lTnVtYmVyIjoiMDEwLTEyMzQtNTY3OCIsImlhdCI6MTcyNDU5NzU3NCwiZXhwIjoxNzI0NjAxMTc0fQ.WL0WqFDX9EVN6O5YNCj1S-eYvXgClXgeV70H3VTNTmw
 Content-Type: application/json
   
 {
-  "refreshToken":"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE3MjQyNDQ4MzgsImV4cCI6MTcyNDg0OTYzOH0.blIL3BwVn65pWarZAfJ7PAJVYKobWxWy5f8oNxwAS68"
+  "refreshToken":"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE3MjQ1OTc1NzQsImV4cCI6MTcyNTIwMjM3NH0.72Pho6hGWliWVBk7v4uMmnbFC1gDJYi37E1DtETjXZY"
 }

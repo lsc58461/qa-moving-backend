@@ -119,6 +119,10 @@ async function notifications(req, res) {
     },
   });
 
+  if (!userInfo) {
+    return res.status(404).json({ message: "존재하지 않는 유저입니다." });
+  }
+
   console.log(userInfo);
   const { filterBy } = req.query;
 

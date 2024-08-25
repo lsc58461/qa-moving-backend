@@ -14,6 +14,10 @@ import {
   sendNotification,
   unreadNotificationsCount,
 } from "./prisma/controllers/notifications.controller.js";
+import {
+  createMovingInfo,
+  movingInfoList,
+} from "./prisma/controllers/movingInfo.controller.js";
 
 const port = process.env.PORT || 3000;
 
@@ -34,7 +38,7 @@ app.get("/auth2/authorize/:socialType", () => {});
 // User
 app.get("/users", usersInfo);
 
-app.get("/users/:userId", userInfo);
+app.get("/user", userInfo);
 
 // Notifications
 app.get("/notifications", notifications);
@@ -45,12 +49,10 @@ app.get("/notifications/unread-count", unreadNotificationsCount);
 
 app.get("/notifications/:notificationId", notification);
 
-// // MovingInfo
-// app.post("/users/:userId/moving-info", () => {});
+// MovingInfo
+app.post("/users/moving-info", createMovingInfo);
 
-// app.get("/users/:userId/moving-info", () => {});
-
-// app.get("/moving-info/:movingInfoId/estimates", () => {});
+app.get("/moving-info/:movingInfoId/estimates", movingInfoList);
 
 // listen
 app.listen(port, () => {
