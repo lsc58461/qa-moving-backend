@@ -1,0 +1,15 @@
+### 이사 정보 등록
+POST http://localhost:3000/users/moving-info
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyVHlwZSI6IkNVU1RPTUVSIiwibmFtZSI6Iu2FjOyKpO2KuDEiLCJlbWFpbCI6InRlc3QxQGdtYWlsLmNvbSIsInBob25lTnVtYmVyIjoiMDEwLTEyMzQtNTY3OCIsImlhdCI6MTcyNDU5NzU3NCwiZXhwIjoxNzI0NjAxMTc0fQ.WL0WqFDX9EVN6O5YNCj1S-eYvXgClXgeV70H3VTNTmw
+Content-Type: application/json
+
+{ 
+  "movingType": "SMALL", 
+  "movingDate":"2024-08-26T12:00:00.000Z",
+  "startAddress": "대구시 북구",
+  "endAddress": "대구시 달서구"
+}
+
+### 받은 견적 조회
+GET http://localhost:3000/moving-info/73839b01-1093-4c47-8cfa-a084f3a0566f/estimates?filterBy=estimate
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyVHlwZSI6IkNVU1RPTUVSIiwibmFtZSI6Iu2FjOyKpO2KuDEiLCJlbWFpbCI6InRlc3QxQGdtYWlsLmNvbSIsInBob25lTnVtYmVyIjoiMDEwLTEyMzQtNTY3OCIsImlhdCI6MTcyNDU5NzU3NCwiZXhwIjoxNzI0NjAxMTc0fQ.WL0WqFDX9EVN6O5YNCj1S-eYvXgClXgeV70H3VTNTmw

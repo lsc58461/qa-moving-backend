@@ -15,26 +15,28 @@ datasource db {
 }
 
 model UserInfo {
-  id              String   @id @default(uuid())
+  id              String         @id @default(uuid())
   userType        UserType
   name            String?
-  email           String?  @unique
+  email           String?        @unique
   phoneNumber     String?
   password        String?
   profileImageUrl String?
   refreshToken    String?
-  createdAt       DateTime @default(now())
-  updatedAt       DateTime @updatedAt
+  createdAt       DateTime       @default(now())
+  updatedAt       DateTime       @updatedAt
+  Notification    Notification[]
 }
 
 model Customer {
-  customerId      String            @id @default(uuid())
-  createdAt       DateTime          @default(now())
-  updatedAt       DateTime          @updatedAt
-  Favorite        Favorite[]
-  MovingInfo      MovingInfo[]
-  EstimateRequest EstimateRequest[]
-  Estimate        Estimate[]
+  customerId       String            @id @default(uuid())
+  openMovingInfoId String?
+  createdAt        DateTime          @default(now())
+  updatedAt        DateTime          @updatedAt
+  Favorite         Favorite[]
+  MovingInfo       MovingInfo[]
+  EstimateRequest  EstimateRequest[]
+  Estimate         Estimate[]
 }
 
 model Mover {
@@ -62,6 +64,7 @@ model Favorite {
 
 model Notification {
   id               String           @id @default(uuid())
+  user             UserInfo         @relation(fields: [userId], references: [id])
   userId           String
   notificationType NotificationType
   message          String
@@ -71,26 +74,29 @@ model Notification {
 }
 
 model MovingInfo {
-  id           String      @id @default(uuid())
-  customer     Customer    @relation(fields: [customerId], references: [customerId])
-  customerId   String
-  movingType   ServiceType
-  movingDate   DateTime
-  startAddress String
-  endAddress   String
-  createdAt    DateTime    @default(now())
-  updatedAt    DateTime    @updatedAt
-  Estimate     Estimate[]
+  id              String      @id @default(uuid())
+  customer        Customer    @relation(fields: [customerId], references: [customerId])
+  customerId      String
+  movingType      ServiceType
+  movingDate      DateTime
+  startAddress    String
+  endAddress      String
+  isConfirmed     Boolean     @default(false)
+  isDone          Boolean     @default(false)
+  estimateCount   Int         @default(0)
+  designatedCount Int         @default(0)
+  createdAt       DateTime    @default(now())
+  updatedAt       DateTime    @updatedAt
+  Estimate        Estimate[]
 }
 
 model EstimateRequest {
-  movingInfoId  String   @id @default(uuid())
-  customer      Customer @relation(fields: [customerId], references: [customerId])
-  customerId    String
-  isDesignated  Boolean  @default(false)
-  estimateCount Int      @default(0)
-  createdAt     DateTime @default(now())
-  updatedAt     DateTime @updatedAt
+  movingInfoId String   @id @default(uuid())
+  customer     Customer @relation(fields: [customerId], references: [customerId])
+  customerId   String
+  isDesignated Boolean  @default(false)
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
 }
 
 model Estimate {
