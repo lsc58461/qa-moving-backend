@@ -18,6 +18,14 @@ import {
   createMovingInfo,
   movingInfoList,
 } from "./prisma/controllers/movingInfo.controller.js";
+import {
+  confirmEstimate,
+  confirmEstimateList,
+  createDesignatedEstimate,
+  createEstimate,
+  detailEstimate,
+  moverEstimateList,
+} from "./prisma/controllers/estimate.controller.js";
 
 const port = process.env.PORT || 3000;
 
@@ -53,6 +61,19 @@ app.get("/notifications/:notificationId", notification);
 app.post("/users/moving-info", createMovingInfo);
 
 app.get("/moving-info/:movingInfoId/estimates", movingInfoList);
+
+// estimate
+app.post("/estimate", createDesignatedEstimate);
+
+app.post("/estimates", createEstimate);
+
+app.get("/estimates", moverEstimateList);
+
+app.get("/estimates/confirm", confirmEstimateList);
+
+app.get("/estimates/:estimateId", detailEstimate);
+
+app.post("/estimates/:estimateId/confirm", confirmEstimate);
 
 // listen
 app.listen(port, () => {

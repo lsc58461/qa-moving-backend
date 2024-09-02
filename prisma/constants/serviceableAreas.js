@@ -1,0 +1,21 @@
+const SERVICEABLE_AREAS = [
+  "SEOUL",
+  "GYEINGGI",
+  "INCHEON",
+  "GANGWON",
+  "CHUNGBUK",
+  "CHUNGNAM",
+  "SEJONG",
+  "DAEJEON",
+  "JEONBUK",
+  "JEONNAM",
+  "GWANGJU",
+  "GYEONGBUK",
+  "GYEONGNAM",
+  "DAEGU",
+  "ULSAN",
+  "BUSAN",
+  "JEJU",
+];
+
+export default SERVICEABLE_AREAS;

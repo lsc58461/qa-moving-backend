@@ -1,5 +1,6 @@
 import { PrismaClient } from "@prisma/client";
 import { verifyAccessToken } from "../utils/jwt.js";
+import SERVICEABLE_AREAS from "../constants/serviceableAreas.js";
 
 const prisma = new PrismaClient();
 
@@ -37,7 +38,8 @@ async function createMovingInfo(req, res) {
     return res.status(400).json({ message: "진행 중인 이사 정보가 있습니다." });
   }
 
-  const { movingType, movingDate, startAddress, endAddress } = req.body;
+  const { movingType, movingDate, startAddress, endAddress, serviceableArea } =
+    req.body;
 
   if (!movingType) {
     return res.status(400).json({ message: "movingType이 필요합니다." });
@@ -65,6 +67,17 @@ async function createMovingInfo(req, res) {
     return res.status(400).json({ message: "endAddress가 필요합니다." });
   }
 
+  if (!serviceableArea) {
+    return res.status(400).json({ message: "serviceableArea가 필요합니다." });
+  }
+
+  if (SERVICEABLE_AREAS.includes(serviceableArea) === false) {
+    return res.status(400).json({
+      message:
+        "serviceableArea는 SEOUL, GYEINGGI, INCHEON, GANGWON, CHUNGBUK, CHUNGNAM, SEJONG, DAEJEON, JEONBUK, JEONNAM, GWANGJU, GYEONGBUK, GYEONGNAM, DAEGU, ULSAN, BUSAN, JEJU, 중 하나여야 합니다.",
+    });
+  }
+
   if (isNaN(Date.parse(movingDate))) {
     return res
       .status(400)
@@ -84,6 +97,7 @@ async function createMovingInfo(req, res) {
       movingDate,
       startAddress,
       endAddress,
+      serviceableArea,
     },
   });
 
@@ -137,7 +151,7 @@ async function movingInfoList(req, res) {
     return res.status(404).json({ message: "등록된 이사 정보가 없습니다." });
   }
 
-  const { filterBy, page = 0, size = 8 } = req.query;
+  const { filterBy, page = 1, size = 8 } = req.query;
 
   if (filterBy !== "estimate" && filterBy !== "pastEstimate") {
     return res.status(400).json({
@@ -154,7 +168,7 @@ async function movingInfoList(req, res) {
       where: {
         movingInfoId: customer.openMovingInfoId,
       },
-      skip: +page * +size,
+      skip: (+page - 1) * +size,
       take: +size,
     });
 
@@ -162,7 +176,20 @@ async function movingInfoList(req, res) {
       return res.status(404).json({ message: "받은 견적이 없습니다." });
     }
 
-    res.json({ estimate });
+    const totalElement = await prisma.estimate.count({
+      where: {
+        movingInfoId: customer.openMovingInfoId,
+      },
+    });
+
+    const totalPages = Math.ceil(totalElement / +size);
+
+    res.json({
+      totalElement,
+      currentPage: +page,
+      totalPages,
+      estimate,
+    });
   }
 
   if (filterBy === "pastEstimate") {
@@ -173,7 +200,7 @@ async function movingInfoList(req, res) {
           not: customer.openMovingInfoId,
         },
       },
-      skip: +page * +size,
+      skip: (+page - 1) * +size,
       take: +size,
     });
 
@@ -181,7 +208,23 @@ async function movingInfoList(req, res) {
       return res.status(404).json({ message: "과거 받은 견적이 없습니다." });
     }
 
-    res.json({ estimate });
+    const totalElement = await prisma.estimate.count({
+      where: {
+        customerId: userInfo.id,
+        movingInfoId: {
+          not: customer.openMovingInfoId,
+        },
+      },
+    });
+
+    const totalPages = Math.ceil(totalElement / +size);
+
+    res.json({
+      totalElement,
+      currentPage: +page,
+      totalPages,
+      estimate,
+    });
   }
 }
 
