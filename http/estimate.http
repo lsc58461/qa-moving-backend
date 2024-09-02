@@ -1,0 +1,34 @@
+### 지정 견적 전송
+POST http://localhost:3000/estimate
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyVHlwZSI6IkNVU1RPTUVSIiwibmFtZSI6Iu2FjOyKpO2KuDEiLCJlbWFpbCI6InRlc3QxQGdtYWlsLmNvbSIsInBob25lTnVtYmVyIjoiMDEwLTEyMzQtNTY3OCIsImlhdCI6MTcyNTE2NDI5OSwiZXhwIjoxNzI1MTY3ODk5fQ.UeCpodk7UgMXDmUUjKqspcIo0JWSSTLQJ6l6TfaXsm4
+Content-Type: application/json
+
+{
+  "moverId": "f25bd2a2-3253-4d57-9db4-9117816289ef"
+}
+
+### 견적 전송
+POST http://localhost:3000/estimates
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyVHlwZSI6Ik1PVkVSIiwibmFtZSI6Iu2FjOyKpO2KuDIiLCJlbWFpbCI6InRlc3QyQGdtYWlsLmNvbSIsInBob25lTnVtYmVyIjoiMDEwLTEyMzQtNTY3OCIsImlhdCI6MTcyNTIzNjM3OSwiZXhwIjoxNzI1MjM5OTc5fQ.cozRMdjjRPSMAV9jF5dqJR9GWJ7QXo5H-VBVjpsnQG4
+Content-Type: application/json
+
+{
+  "movingInfoId": "65329a47-3f2b-440b-8977-4461736ad2ca",
+  "price": 1000000,
+  "comment": "모든 비용 포함입니다. 감사합니다."
+}
+
+### 견적 요청 조회
+GET http://localhost:3000/estimates?page=1&size=8&movingType=["SMALL","HOME","OFFICE"]
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyVHlwZSI6Ik1PVkVSIiwibmFtZSI6Iu2FjOyKpO2KuDIiLCJlbWFpbCI6InRlc3QyQGdtYWlsLmNvbSIsInBob25lTnVtYmVyIjoiMDEwLTEyMzQtNTY3OCIsImlhdCI6MTcyNTIzNjM3OSwiZXhwIjoxNzI1MjM5OTc5fQ.cozRMdjjRPSMAV9jF5dqJR9GWJ7QXo5H-VBVjpsnQG4
+
+### 견적 상세 조회
+GET http://localhost:3000/estimates/4ad24459-e036-4d62-b01d-0d06ea175838
+
+### 일반 유저의 견적에 대해 예약 확정
+POST http://localhost:3000/estimates/4ad24459-e036-4d62-b01d-0d06ea175838/confirm
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyVHlwZSI6IkNVU1RPTUVSIiwibmFtZSI6Iu2FjOyKpO2KuDEiLCJlbWFpbCI6InRlc3QxQGdtYWlsLmNvbSIsInBob25lTnVtYmVyIjoiMDEwLTEyMzQtNTY3OCIsImlhdCI6MTcyNTI0MDIwMSwiZXhwIjoxNzI1MjQzODAxfQ.FsEat39-brBxU2vk8Yk9rlPoJa9HF091nhuWZQNqmbo
+
+### 기사님 및 일반 유저의 확정 견적 조회
+GET http://localhost:3000/estimates/confirm
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyVHlwZSI6Ik1PVkVSIiwibmFtZSI6Iu2FjOyKpO2KuDIiLCJlbWFpbCI6InRlc3QyQGdtYWlsLmNvbSIsInBob25lTnVtYmVyIjoiMDEwLTEyMzQtNTY3OCIsImlhdCI6MTcyNTI2NzY4MiwiZXhwIjoxNzI1MjcxMjgyfQ.jNeuTs_jN1ZXct3EgsKVSNWwz3ub15fyh-RL2I_OAAY

@@ -2,38 +2,38 @@
 POST http://localhost:3000/auth/signup
 Content-Type: application/json
 
-{
-  "userType": "CUSTOMER",
-  "name":"테스트1",
-  "email":"test1@gmail.com", 
-  "phoneNumber": "010-1234-5678",
-  "password":"test1234"
-}
-
 # {
-#   "userType": "MOVER",
-#   "name":"테스트2",
-#   "email":"test2@gmail.com", 
+#   "userType": "CUSTOMER",
+#   "name":"테스트1",
+#   "email":"test1@gmail.com", 
 #   "phoneNumber": "010-1234-5678",
 #   "password":"test1234"
 # }
 
+{
+  "userType": "MOVER",
+  "name":"테스트2",
+  "email":"test2@gmail.com", 
+  "phoneNumber": "010-1234-5678",
+  "password":"test1234"
+}
+
 ### signin
-POST http://localhost:3000/auth/signin
+POST http://3.34.5.73:3000/auth/signin
 Content-Type: application/json
 
 {
-  "email":"test1@gmail.com", 
+  "email":"test2@gmail.com", 
   "password":"test1234"
 }
 
 ### signout
 POST http://localhost:3000/auth/signout
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyVHlwZSI6IkNVU1RPTUVSIiwibmFtZSI6Iu2FjOyKpO2KuDEiLCJlbWFpbCI6InRlc3QxQGdtYWlsLmNvbSIsInBob25lTnVtYmVyIjoiMDEwLTEyMzQtNTY3OCIsImlhdCI6MTcyNDU5NzU3NCwiZXhwIjoxNzI0NjAxMTc0fQ.WL0WqFDX9EVN6O5YNCj1S-eYvXgClXgeV70H3VTNTmw
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyVHlwZSI6IkNVU1RPTUVSIiwibmFtZSI6Iu2FjOyKpO2KuDEiLCJlbWFpbCI6InRlc3QxQGdtYWlsLmNvbSIsInBob25lTnVtYmVyIjoiMDEwLTEyMzQtNTY3OCIsImlhdCI6MTcyNTE0NTk3OSwiZXhwIjoxNzI1MTQ5NTc5fQ.ONnWeikUIkmK6V2fnFWjbheCszSrAoHyRzckAFU3x6Y
 
 ### refresh
 POST http://localhost:3000/auth/refresh
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyVHlwZSI6IkNVU1RPTUVSIiwibmFtZSI6Iu2FjOyKpO2KuDEiLCJlbWFpbCI6InRlc3QxQGdtYWlsLmNvbSIsInBob25lTnVtYmVyIjoiMDEwLTEyMzQtNTY3OCIsImlhdCI6MTcyNDU5NzU3NCwiZXhwIjoxNzI0NjAxMTc0fQ.WL0WqFDX9EVN6O5YNCj1S-eYvXgClXgeV70H3VTNTmw
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyVHlwZSI6IkNVU1RPTUVSIiwibmFtZSI6Iu2FjOyKpO2KuDEiLCJlbWFpbCI6InRlc3QxQGdtYWlsLmNvbSIsInBob25lTnVtYmVyIjoiMDEwLTEyMzQtNTY3OCIsImlhdCI6MTcyNTE0NTk3OSwiZXhwIjoxNzI1MTQ5NTc5fQ.ONnWeikUIkmK6V2fnFWjbheCszSrAoHyRzckAFU3x6Y
 Content-Type: application/json
   
 {
