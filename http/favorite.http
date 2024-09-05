@@ -1,0 +1,16 @@
+### 찜하기
+POST http://localhost:3000/favorite
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyVHlwZSI6IkNVU1RPTUVSIiwibmFtZSI6Iu2FjOyKpO2KuDEiLCJlbWFpbCI6InRlc3QxQGdtYWlsLmNvbSIsInBob25lTnVtYmVyIjoiMDEwLTEyMzQtNTY3OCIsImlhdCI6MTcyNTU0NTMwNCwiZXhwIjoxNzI1NTQ4OTA0fQ.A109FHizaw6hHBdrplYC0fc61rY_qC4k2V064_4AHNM
+Content-Type: application/json
+
+{
+  "moverId": "f25bd2a2-3253-4d57-9db4-9117816289ef"
+}
+
+### 찜한 목록 조회
+GET http://localhost:3000/favorites
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyVHlwZSI6IkNVU1RPTUVSIiwibmFtZSI6Iu2FjOyKpO2KuDEiLCJlbWFpbCI6InRlc3QxQGdtYWlsLmNvbSIsInBob25lTnVtYmVyIjoiMDEwLTEyMzQtNTY3OCIsImlhdCI6MTcyNTU0NTMwNCwiZXhwIjoxNzI1NTQ4OTA0fQ.A109FHizaw6hHBdrplYC0fc61rY_qC4k2V064_4AHNM
+
+### 찜한 목록 삭제
+DELETE http://localhost:3000/favorites/83770a8d-96a8-47bc-be54-07689a8b9649
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyVHlwZSI6IkNVU1RPTUVSIiwibmFtZSI6Iu2FjOyKpO2KuDEiLCJlbWFpbCI6InRlc3QxQGdtYWlsLmNvbSIsInBob25lTnVtYmVyIjoiMDEwLTEyMzQtNTY3OCIsImlhdCI6MTcyNTU0NTMwNCwiZXhwIjoxNzI1NTQ4OTA0fQ.A109FHizaw6hHBdrplYC0fc61rY_qC4k2V064_4AHNM

@@ -7,7 +7,10 @@ import {
   signout,
   signup,
 } from "./prisma/controllers/auth.controller.js";
-import { userInfo, usersInfo } from "./prisma/controllers/user.controller.js";
+import {
+  getUserInfo,
+  getUsersInfo,
+} from "./prisma/controllers/user.controller.js";
 import {
   notification,
   notifications,
@@ -26,6 +29,11 @@ import {
   detailEstimate,
   moverEstimateList,
 } from "./prisma/controllers/estimate.controller.js";
+import {
+  favorite,
+  favoriteDelete,
+  favoriteList,
+} from "./prisma/controllers/favorite.controller.js";
 
 const port = process.env.PORT || 3000;
 
@@ -44,9 +52,9 @@ app.post("/auth/refresh", refresh);
 app.get("/auth2/authorize/:socialType", () => {});
 
 // User
-app.get("/users", usersInfo);
+app.get("/users", getUsersInfo);
 
-app.get("/user", userInfo);
+app.get("/user", getUserInfo);
 
 // Notifications
 app.get("/notifications", notifications);
@@ -62,7 +70,7 @@ app.post("/users/moving-info", createMovingInfo);
 
 app.get("/moving-info/:movingInfoId/estimates", movingInfoList);
 
-// estimate
+// Estimate
 app.post("/estimate", createDesignatedEstimate);
 
 app.post("/estimates", createEstimate);
@@ -74,6 +82,13 @@ app.get("/estimates/confirm", confirmEstimateList);
 app.get("/estimates/:estimateId", detailEstimate);
 
 app.post("/estimates/:estimateId/confirm", confirmEstimate);
+
+// Favorite
+app.post("/favorite", favorite);
+
+app.get("/favorites", favoriteList);
+
+app.delete("/favorites/:favoriteId", favoriteDelete);
 
 // listen
 app.listen(port, () => {
