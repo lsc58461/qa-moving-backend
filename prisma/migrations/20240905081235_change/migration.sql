@@ -1,0 +1,2 @@
+-- AddForeignKey
+ALTER TABLE "Mover" ADD CONSTRAINT "Mover_moverId_fkey" FOREIGN KEY ("moverId") REFERENCES "UserInfo"("id") ON DELETE RESTRICT ON UPDATE CASCADE;

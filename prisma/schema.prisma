@@ -26,6 +26,7 @@ model UserInfo {
   createdAt       DateTime       @default(now())
   updatedAt       DateTime       @updatedAt
   Notification    Notification[]
+  Mover           Mover[]
 }
 
 model Customer {
@@ -40,6 +41,7 @@ model Customer {
 }
 
 model Mover {
+  mover                     UserInfo                    @relation(fields: [moverId], references: [id])
   moverId                   String                      @id @default(uuid())
   career                    String?
   confirmedCount            Int?
@@ -141,7 +143,7 @@ model Review {
   movingInfoId String
   customerId   String
   moverId      String
-  rating       Int
+  rating       Float
   comment      String
   createdAt    DateTime @default(now())
   updatedAt    DateTime @updatedAt
