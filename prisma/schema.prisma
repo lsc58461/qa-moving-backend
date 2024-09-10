@@ -129,6 +129,7 @@ model Estimate {
   customerId   String
   mover        Mover      @relation(fields: [moverId], references: [moverId])
   moverId      String
+  review       Review?    @relation(fields: [reviewId], references: [id])
   reviewId     String?
   price        Int
   comment      String?
@@ -138,15 +139,16 @@ model Estimate {
 }
 
 model Review {
-  id           String   @id @default(uuid())
+  id           String     @id @default(uuid())
   estimateId   String
   movingInfoId String
   customerId   String
   moverId      String
   rating       Float
   comment      String
-  createdAt    DateTime @default(now())
-  updatedAt    DateTime @updatedAt
+  createdAt    DateTime   @default(now())
+  updatedAt    DateTime   @updatedAt
+  Estimate     Estimate[]
 }
 
 // -------------------- enum --------------------

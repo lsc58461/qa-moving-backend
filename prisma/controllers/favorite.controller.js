@@ -204,7 +204,7 @@ async function favoriteList(req, res) {
         const formattedRating = rating._avg.rating
           ? +rating._avg.rating.toFixed(1)
           : 0;
-        console.log(mover);
+
         return {
           favoriteId: mover.Favorite[0].id,
           moverId: mover.moverId,
