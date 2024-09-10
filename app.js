@@ -34,6 +34,13 @@ import {
   favoriteDelete,
   favoriteList,
 } from "./prisma/controllers/favorite.controller.js";
+import {
+  createReview,
+  customerReviewList,
+  deleteReview,
+  reviewList,
+  updateReview,
+} from "./prisma/controllers/review.controller.js";
 
 const port = process.env.PORT || 3000;
 
@@ -89,6 +96,17 @@ app.post("/favorite", favorite);
 app.get("/favorites", favoriteList);
 
 app.delete("/favorites/:favoriteId", favoriteDelete);
+
+// Review
+app.get("/movers/:moverId/reviews", reviewList);
+
+app.get("/reviews", customerReviewList);
+
+app.post("/reviews", createReview);
+
+app.put("/reviews/:reviewId", updateReview);
+
+app.delete("/reviews/:reviewId", deleteReview);
 
 // listen
 app.listen(port, () => {
