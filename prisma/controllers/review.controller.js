@@ -260,6 +260,28 @@ async function createReview(req, res) {
       },
     });
 
+    const averageRating = await prisma.review.aggregate({
+      where: {
+        moverId: estimate.moverId,
+      },
+      _avg: {
+        rating: true,
+      },
+    });
+
+    const formattedRating = averageRating._avg.rating
+      ? +averageRating._avg.rating.toFixed(1)
+      : 0;
+
+    await prisma.mover.update({
+      where: {
+        moverId: estimate.moverId,
+      },
+      data: {
+        rating: formattedRating,
+      },
+    });
+
     await prisma.estimate.update({
       where: {
         id: estimateId,
@@ -339,6 +361,28 @@ async function updateReview(req, res) {
       data: {
         rating,
         comment,
+      },
+    });
+
+    const averageRating = await prisma.review.aggregate({
+      where: {
+        moverId: review.moverId,
+      },
+      _avg: {
+        rating: true,
+      },
+    });
+
+    const formattedRating = averageRating._avg.rating
+      ? +averageRating._avg.rating.toFixed(1)
+      : 0;
+
+    await prisma.mover.update({
+      where: {
+        moverId: review.moverId,
+      },
+      data: {
+        rating: formattedRating,
       },
     });
 

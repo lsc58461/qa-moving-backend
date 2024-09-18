@@ -43,10 +43,11 @@ model Customer {
 model Mover {
   mover                     UserInfo                    @relation(fields: [moverId], references: [id])
   moverId                   String                      @id @default(uuid())
-  career                    String?
-  confirmedCount            Int?
+  career                    Int?
+  confirmedCount            Int?                        @default(0)
   oneLineIntroduction       String?
   detailDescription         String?
+  rating                    Float?                      @default(0)
   createdAt                 DateTime                    @default(now())
   updatedAt                 DateTime                    @updatedAt
   Favorite                  Favorite[]
