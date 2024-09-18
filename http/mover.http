@@ -1,0 +1,27 @@
+### 전체 기사님 조회
+GET http://localhost:3000/movers?page=1&size=10&moverName=테&orderBy=ratingDesc
+
+### 기사님 기본 정보 수정
+PUT http://localhost:3000/mover
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyVHlwZSI6Ik1PVkVSIiwibmFtZSI6Iu2FjOyKpO2KuDIiLCJlbWFpbCI6InRlc3QyQGdtYWlsLmNvbSIsInBob25lTnVtYmVyIjoiMDEwLTEyMzQtNTY3OCIsImlhdCI6MTcyNjYzNjQ2MSwiZXhwIjoxNzI2NjQwMDYxfQ.3DB2o6IACd5TuemPb12TY4w_iKnOaWxdZCvJ5kfqGak
+Content-Type: application/json
+
+{ 
+  "name":"이정윤",
+  "phoneNumber": "010-8266-3635",
+  "password": "test1234" 
+}
+
+### 기사님 프로필 수정
+PUT http://localhost:3000/mover/profile
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyVHlwZSI6Ik1PVkVSIiwibmFtZSI6Iu2FjOyKpO2KuDIiLCJlbWFpbCI6InRlc3QyQGdtYWlsLmNvbSIsInBob25lTnVtYmVyIjoiMDEwLTEyMzQtNTY3OCIsImlhdCI6MTcyNjYzNjQ2MSwiZXhwIjoxNzI2NjQwMDYxfQ.3DB2o6IACd5TuemPb12TY4w_iKnOaWxdZCvJ5kfqGak
+Content-Type: application/json
+
+{
+  "profileImageUrl": "https://gongu.copyright.or.kr/gongu/wrt/cmmn/wrtFileImageView.do?wrtSn=9046601&filePath=L2Rpc2sxL25ld2RhdGEvMjAxNC8yMS9DTFM2L2FzYWRhbFBob3RvXzI0MTRfMjAxNDA0MTY=&thumbAt=Y&thumbSe=b_tbumb&wrtTy=10004",
+  "career": 3,
+  "oneLineIntroduction": "안녕하세요",
+  "detailDescription": "안녕하세요",
+  "serviceableArea": ["SEOUL", "DAEGU", "JEJU", "GWANGJU"],
+  "serviceType": ["SMALL", "HOME", "OFFICE"]
+}

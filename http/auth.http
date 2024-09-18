@@ -1,5 +1,5 @@
 ### signup
-POST http://localhost:3000/auth/signup
+POST https://qa-moving-backend.onrender.com/auth/signup
 Content-Type: application/json
 
 # {
@@ -12,18 +12,18 @@ Content-Type: application/json
 
 {
   "userType": "MOVER",
-  "name":"테스트2",
-  "email":"test2@gmail.com", 
+  "name":"테스트20",
+  "email":"test20@gmail.com", 
   "phoneNumber": "010-1234-5678",
   "password":"test1234"
 }
 
 ### signin
-POST http://3.34.5.73:3000/auth/signin
+POST https://qa-moving-backend.onrender.com/auth/signin
 Content-Type: application/json
 
 {
-  "email":"test1@gmail.com", 
+  "email":"test2@gmail.com", 
   "password":"test1234"
 }
 

@@ -1,5 +1,6 @@
 import * as dotenv from "dotenv";
 dotenv.config();
+import cors from "cors";
 import express from "express";
 import {
   refresh,
@@ -41,10 +42,17 @@ import {
   reviewList,
   updateReview,
 } from "./prisma/controllers/review.controller.js";
+import {
+  moverList,
+  updateMoverInfo,
+  updateMoverProfile,
+} from "./prisma/controllers/mover.controller.js";
 
 const port = process.env.PORT || 3000;
 
 const app = express();
+
+app.use(cors());
 app.use(express.json());
 
 // Auth
@@ -89,6 +97,13 @@ app.get("/estimates/confirm", confirmEstimateList);
 app.get("/estimates/:estimateId", detailEstimate);
 
 app.post("/estimates/:estimateId/confirm", confirmEstimate);
+
+// Mover
+app.get("/movers", moverList);
+
+app.put("/mover", updateMoverInfo);
+
+app.put("/mover/profile", updateMoverProfile);
 
 // Favorite
 app.post("/favorite", favorite);
