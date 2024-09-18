@@ -38,6 +38,8 @@ model Customer {
   MovingInfo                MovingInfo[]
   Estimate                  Estimate[]
   DesignatedEstimateRequest DesignatedEstimateRequest[]
+  ServiceableArea           ServiceableArea[]
+  ServiceType               ServiceType[]
 }
 
 model Mover {
@@ -58,17 +60,21 @@ model Mover {
 }
 
 model ServiceType {
-  id      String       @id @default(uuid())
-  mover   Mover        @relation(fields: [moverId], references: [moverId])
-  moverId String
-  type    ServiceTypes
+  id         String       @id @default(uuid())
+  mover      Mover?       @relation(fields: [moverId], references: [moverId])
+  moverId    String?
+  customer   Customer?    @relation(fields: [customerId], references: [customerId])
+  customerId String?
+  type       ServiceTypes
 }
 
 model ServiceableArea {
-  id      String           @id @default(uuid())
-  mover   Mover            @relation(fields: [moverId], references: [moverId])
-  moverId String
-  area    ServiceableAreas
+  id         String           @id @default(uuid())
+  mover      Mover?           @relation(fields: [moverId], references: [moverId])
+  moverId    String?
+  customer   Customer?        @relation(fields: [customerId], references: [customerId])
+  customerId String?
+  area       ServiceableAreas
 }
 
 model Favorite {

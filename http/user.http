@@ -5,3 +5,17 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyVHlwZSI6Ik1PV
 ### 유저 정보 조회
 GET http://localhost:3000/user
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyVHlwZSI6IkNVU1RPTUVSIiwibmFtZSI6Iu2FjOyKpO2KuDEiLCJlbWFpbCI6InRlc3QxQGdtYWlsLmNvbSIsInBob25lTnVtYmVyIjoiMDEwLTEyMzQtNTY3OCIsImlhdCI6MTcyNDU5NzU3NCwiZXhwIjoxNzI0NjAxMTc0fQ.WL0WqFDX9EVN6O5YNCj1S-eYvXgClXgeV70H3VTNTmw
+
+### 유저 정보 수정
+PUT http://localhost:3000/user
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyVHlwZSI6IkNVU1RPTUVSIiwibmFtZSI6Iu2FjOyKpO2KuDEiLCJlbWFpbCI6InRlc3QxQGdtYWlsLmNvbSIsInBob25lTnVtYmVyIjoiMDEwLTEyMzQtNTY3OCIsImlhdCI6MTcyNjY0MzAwOCwiZXhwIjoxNzI2NjQ2NjA4fQ.hwKWLRiXBZ6fEdpBGj-FvlzGbNgbd6mMwlKhZzwpVmQ
+Content-Type: application/json
+
+{
+  "name":"테스트1",
+  "phoneNumber": "010-1234-5678",
+  "password": "test1234",
+  "profileImageUrl": "https://gongu.copyright.or.kr/gongu/wrt/cmmn/wrtFileImageView.do?wrtSn=9046601&filePath=L2Rpc2sxL25ld2RhdGEvMjAxNC8yMS9DTFM2L2FzYWRhbFBob3RvXzI0MTRfMjAxNDA0MTY=&thumbAt=Y&thumbSe=b_tbumb&wrtTy=10004",
+  "movingType": ["SMALL"],
+  "movingArea": ["DAEGU"]
+}

@@ -11,6 +11,7 @@ import {
 import {
   getUserInfo,
   getUsersInfo,
+  updateUserInfo,
 } from "./prisma/controllers/user.controller.js";
 import {
   notification,
@@ -70,6 +71,8 @@ app.get("/auth2/authorize/:socialType", () => {});
 app.get("/users", getUsersInfo);
 
 app.get("/user", getUserInfo);
+
+app.put("/user", updateUserInfo);
 
 // Notifications
 app.get("/notifications", notifications);
