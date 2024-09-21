@@ -88,7 +88,6 @@ async function signin(req, res) {
     userType: userInfo.userType,
     name: userInfo.name,
     email: userInfo.email,
-    phoneNumber: userInfo.phoneNumber,
   };
 
   const accessToken = generateAccessToken(payload);
