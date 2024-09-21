@@ -48,6 +48,9 @@ import {
   updateMoverInfo,
   updateMoverProfile,
 } from "./prisma/controllers/mover.controller.js";
+import upload from "./prisma/utils/awsImageUpload.js";
+import { uploadImage } from "./prisma/controllers/image.controller.js";
+import { oauth } from "./prisma/controllers/oauth.controller.js";
 
 const port = process.env.PORT || 3000;
 
@@ -65,7 +68,7 @@ app.post("/auth/signout", signout);
 
 app.post("/auth/refresh", refresh);
 
-app.get("/auth2/authorize/:socialType", () => {});
+app.get("/oauth/:socialType", oauth);
 
 // User
 app.get("/users", getUsersInfo);
@@ -125,6 +128,9 @@ app.post("/reviews", createReview);
 app.put("/reviews/:reviewId", updateReview);
 
 app.delete("/reviews/:reviewId", deleteReview);
+
+// Image
+app.post("/image", upload.single("image"), uploadImage);
 
 // listen
 app.listen(port, () => {
